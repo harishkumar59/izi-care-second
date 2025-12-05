@@ -1,0 +1,1143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navbar Section */
+.navbar-section {
+  background: #2e2a2a;
+  color: white;
+  padding: 1.5rem 4rem;
+  position: relative;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 4px;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: #1a1a1a;
+}
+
+/* ============================================
+   HERO SECTION - Main promotional banner
+   ============================================ */
+
+/* QUICK ADJUSTMENT GUIDE:
+   ========================
+   
+   1. TEXT POSITION & SIZE:
+      - Find .hero-text → Change flex value (1 = current, 0.5 = narrower, 1.5 = wider)
+      - Find .hero-title → Change font-size (5rem = current, 6rem = bigger, 4rem = smaller)
+      - Find .hero-tagline → Change font-size (1.3rem = current)
+   
+   2. IMAGE POSITION & SIZE:
+      - Find .hero-image-container → Change flex value to adjust image area width
+      - Find .hero-main-image → Change max-width (100% = current, 80% = smaller)
+      - Find .hero-main-image → Add transform: translateX(50px) to move image right/left
+   
+   3. SPACING:
+      - Find .hero-section → Change padding (2rem 4rem = current)
+      - Find .hero-content → Change gap (3rem = current) for space between text and images
+      - Find .hero-title → Change margin-bottom for space below title
+   
+   4. BACKGROUND:
+      - Find .hero-section → Change background color (#000000 = black)
+      - Find .background-text → Change font-size (25rem = current) or opacity (0.05 = current)
+   
+   5. VERTICAL ALIGNMENT:
+      - Find .hero-content → Change align-items (center = middle, flex-start = top, flex-end = bottom)
+   
+   6. ADD SECOND CAMERA IMAGE:
+      - In Home.jsx, add: <img src="/images/camera-background.jpg" className="hero-background-image" />
+      - Find .hero-background-image → Adjust opacity, blur, and position
+*/
+
+/* Hero Section Container
+   - Controls the overall hero section background and spacing
+   - ADJUST: padding (top/bottom left/right) to change spacing around content
+   - ADJUST: min-height to make section taller/shorter
+   - ADJUST: background color (#000000 = black) to change background color
+*/
+.hero-section {
+  background: #000000; /* Change this color to adjust background (e.g., #1a1a1a for dark grey) */
+  color: white;
+  min-height: 85vh; /* Increase this value (e.g., 90vh) to make section taller */
+  position: relative;
+  overflow: hidden; /* Keeps content within bounds */
+  padding: 2rem 4rem; /* ADJUST: First value = top/bottom spacing, Second = left/right spacing */
+}
+
+/* Hero Container - Centers content with max width
+   - ADJUST: max-width to make content area wider/narrower (1400px = wide, 1200px = narrower)
+*/
+.hero-container {
+  max-width: 1400px; /* Change to 1200px for narrower, 1600px for wider */
+  margin: 0 auto; /* Centers the container */
+  height: 100%;
+}
+
+/* Hero Content - Flexbox container for text and images
+   - ADJUST: align-items to change vertical alignment (center, flex-start, flex-end)
+   - ADJUST: min-height to control section height
+   - ADJUST: gap to add space between text and image sections
+   - ADJUST: justify-content to change horizontal distribution
+*/
+.hero-content {
+  display: flex;
+  justify-content: space-between; /* ADJUST: space-between = text left/images right, space-around = equal spacing */
+  align-items: center; /* ADJUST: center = middle, flex-start = top, flex-end = bottom */
+  position: relative;
+  min-height: 75vh; /* ADJUST: Increase for taller section (e.g., 80vh) */
+  gap: 3rem; /* ADJUST: Add space between text and images (e.g., 4rem for more space) */
+}
+
+/* Hero Text Container - Left side text area
+   - ADJUST: flex value to change width (1 = equal space, 0.5 = half space)
+   - ADJUST: max-width to limit text width (600px = current, 500px = narrower)
+   - ADJUST: padding-right to add space between text and images
+   - ADJUST: align-self to change vertical position of text block
+*/
+.hero-text {
+  flex: 1; /* ADJUST: Change to 0.5 for narrower text, 1.5 for wider */
+  z-index: 2; /* Keeps text above background elements */
+  max-width: 600px; /* ADJUST: Increase to 700px for wider text area */
+  padding-right: 2rem; /* ADJUST: Add more space between text and images */
+  align-self: flex-start; /* ADJUST: flex-start = top, center = middle, flex-end = bottom */
+  padding-top: 4rem; /* ADJUST: Move text up/down (reduce to 2rem to move up) */
+}
+
+/* Hero Title - Main heading "IZICare Plan."
+   - ADJUST: font-size to make text bigger/smaller (5rem = large, 4rem = medium, 6rem = extra large)
+   - ADJUST: font-weight (800 = bold, 700 = medium-bold, 900 = extra-bold)
+   - ADJUST: margin-bottom to change space below title
+   - ADJUST: letter-spacing to change character spacing (-1px = tight, 0 = normal)
+   - ADJUST: line-height to change line spacing (1.1 = tight, 1.3 = loose)
+*/
+.hero-title {
+  font-size: 3rem; /* ADJUST: Make bigger (6rem) or smaller (4rem) */
+  font-weight: 800; /* ADJUST: 700 = lighter, 900 = heavier */
+  color: white; /* Explicit white color to match tagline */
+  line-height: 1.1; /* ADJUST: 1.2 = more space, 1.0 = tighter */
+  margin-bottom: 1.5rem; /* ADJUST: Increase (2rem) for more space below title */
+  letter-spacing: -1px; /* ADJUST: 0 = normal spacing, -2px = tighter */
+}
+
+/* Hero Tagline - Subtitle text below title
+   - ADJUST: font-size to change text size (1.3rem = current, 1.5rem = larger)
+   - ADJUST: font-weight (300 = light, 400 = normal, 500 = medium)
+   - ADJUST: opacity to make text brighter/dimmer (0.9 = current, 1.0 = fully bright)
+   - ADJUST: margin-top to add space above tagline
+*/
+.hero-tagline {
+  font-size: 1.8rem; /* ADJUST: Make bigger (1.5rem) or smaller (1.1rem) */
+  font-weight: 300; /* ADJUST: 400 = normal weight, 500 = medium */
+  color: white; /* Same color as title - fully opaque white */
+  opacity: 1; /* Fully opaque to match title color */
+  line-height: 1.5; /* ADJUST: 1.6 = more space between lines */
+  margin-top: 0; /* ADJUST: Add margin-top: 1rem for space above tagline */
+}
+
+/* Hero Image Container - Right side image area
+   - ADJUST: flex value to change image area width (1 = equal, 1.5 = wider)
+   - ADJUST: justify-content to change horizontal image position (center, flex-start, flex-end)
+   - ADJUST: align-items to change vertical image position (center, flex-start, flex-end)
+   - ADJUST: height to control image container height
+*/
+.hero-image-container {
+  flex: 1; /* ADJUST: Change to 1.2 for wider image area, 0.8 for narrower */
+  position: relative;
+  display: flex;
+  justify-content: flex-start; /* Changed to flex-start to position image closer to text */
+  align-items: center; /* ADJUST: flex-start = top, flex-end = bottom, center = middle */
+  height: 100%;
+  z-index: 1; /* Keeps images below text */
+  min-height: 500px; /* ADJUST: Minimum height for image container */
+}
+
+/* Background Text - Large decorative text behind images
+   - ADJUST: font-size to make background text bigger/smaller (25rem = current)
+   - ADJUST: color opacity (0.05 = very faint, 0.1 = more visible)
+   - ADJUST: left/top percentages to move text position (50% = center)
+   - ADJUST: letter-spacing to change character spacing
+*/
+.background-text {
+  position: absolute;
+  font-size: 25rem; /* ADJUST: Make bigger (30rem) or smaller (20rem) */
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.05); /* ADJUST: Change 0.05 to 0.1 for more visible text */
+  z-index: 0; /* Behind everything */
+  letter-spacing: -10px; /* ADJUST: 0 = normal spacing */
+  left: 50%; /* ADJUST: 60% = move right, 40% = move left */
+  top: 50%; /* ADJUST: 40% = move up, 60% = move down */
+  transform: translate(-50%, -50%); /* Centers the text */
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+/* Hero Main Image - Primary camera/product image (foreground)
+   - ADJUST: max-width to control image size (100% = full container, 80% = smaller)
+   - ADJUST: transform to rotate/scale image (e.g., rotate(5deg) or scale(1.1))
+   - ADJUST: z-index to change layering (higher = on top)
+   - ADJUST: position to move image (relative, absolute with top/left values)
+   - ADJUST: translateX to move image left (negative) or right (positive)
+*/
+.hero-main-image {
+  position: relative;
+  z-index: 2; /* ADJUST: Higher number (3) = on top, lower (1) = behind */
+  max-width: 230%; /* ADJUST: Change to 80% for smaller image, 120% for larger */
+  height: auto;
+  object-fit: contain; /* ADJUST: cover = fills space, contain = fits within space */
+  /* Move image left towards the text - negative value moves left, positive moves right */
+  transform: translateX(-50%);
+  /* transform: translateY(100%); ADJUST: Change -40% to move more left (-50%) or less left (-30%) */
+   /* ADJUST: Change -40% to move more left (-50%) or less left (-30%) */
+}
+
+/* Hero Background Image - Second camera/product image (blurred background)
+   TO USE: Add a second <img> tag in Home.jsx with className="hero-background-image"
+   Example: <img src="/images/hero-background.jpg" className="hero-background-image" />
+   
+   - ADJUST: opacity to make more/less visible (0.3 = faint, 0.6 = more visible)
+   - ADJUST: filter blur to change blur amount (8px = current, 12px = more blur)
+   - ADJUST: transform scale to make bigger/smaller (0.9 = smaller, 1.1 = larger)
+   - ADJUST: top/left/right to position the background image
+*/
+.hero-background-image {
+  position: absolute;
+  z-index: 1; /* Behind main image (z-index: 2) */
+  max-width: 90%; /* ADJUST: Make smaller (80%) or larger (100%) */
+  height: auto;
+  opacity: 0.4; /* ADJUST: 0.3 = more transparent, 0.6 = more visible */
+  filter: blur(8px); /* ADJUST: 4px = less blur, 12px = more blur, 0 = no blur */
+  transform: scale(0.95) translate(10%, 5%); /* ADJUST: Change translate values to move image */
+  object-fit: contain;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+/* Logo Section */
+.logo-section {
+  background: transparent;
+  padding: 4rem 2rem;
+}
+
+.logo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand-logo-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-divider {
+  width: 2px;
+  height: 80px;
+  background: #1a1a1a;
+}
+
+/* Protection Section */
+.protection-section {
+  background: rgba(237, 237, 237, 1);
+  padding: 6rem 4rem;
+}
+
+.protection-title {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4rem;
+  letter-spacing: -1px;
+}
+
+.protection-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.protection-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.protection-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.protection-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.protection-description {
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* CTA Section */
+.cta-section {
+  background: #2e2e2e;
+  padding: 6rem 4rem;
+}
+
+.cta-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: center;
+}
+
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #2e2e2e;
+  padding: 4rem;
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.cta-description {
+  font-size: 1.1rem;
+  color: white;
+  line-height: 1.8;
+}
+
+.cta-image-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: #2e2e2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.cta-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Protection Simple Section */
+.protection-simple-section {
+  background: white;
+  padding: 6rem 4rem;
+}
+
+.protection-simple-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.protection-simple-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+.protection-feature {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checkmark {
+  font-size: 1.5rem;
+  color: #22c55e;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.claims-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+.claims-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   HOW IT WORKS SECTION - Two column layout with text and image
+   ============================================ */
+
+/* QUICK ADJUSTMENT GUIDE:
+   ========================
+   
+   1. SECTION BACKGROUND & SPACING:
+      - Find .how-it-works-section → Change background color (rgba(237, 237, 237, 1) = light gray)
+      - Find .how-it-works-section → Change padding (6rem 4rem = top/bottom left/right)
+   
+   2. TITLE "HOW IT WORKS":
+      - Find .how-it-works-title → Change text-align (center, left, right)
+      - Find .how-it-works-title → Change margin-bottom for space below title
+      - Find .how-it-works-title → Change font-size (3.5rem = current)
+   
+   3. TEXT CONTENT (Left Side):
+      - Find .easy-claims-title → Change font-size (2.5rem = current)
+      - Find .easy-claims-description → Change color to match title (#1a1a1a = dark gray)
+      - Find .how-it-works-text → Change gap (2rem = space between title, text, button)
+   
+   4. IMAGE POSITION (Right Side):
+      - Find .hand-phone-image → Change width (200% = current, 150% = smaller, 250% = larger)
+      - Find .hand-phone-image → Change translateX(-70%) to move left/right (negative = left, positive = right)
+      - Find .how-it-works-image → Change justify-content (center, flex-start, flex-end)
+   
+   5. SPACING BETWEEN TEXT AND IMAGE:
+      - Find .how-it-works-content → Change gap (4rem = current, 3rem = less space, 5rem = more space)
+*/
+
+/* How It Works Section Container
+   - ADJUST: background color to change section background (rgba(237, 237, 237, 1) = light gray)
+   - ADJUST: padding to change spacing around content
+   - TO DECREASE BOTTOM SPACE: Reduce padding-bottom value (6rem = current, 4rem = less, 2rem = minimal)
+   - TO INCREASE BOTTOM SPACE: Increase padding-bottom value (8rem = more, 10rem = even more)
+   - TO CHANGE TOP SPACE: Adjust padding-top value (17rem = current)
+   - TO CHANGE LEFT/RIGHT SPACE: Adjust padding-left and padding-right (2rem = current)
+*/
+.how-it-works-section {
+  background: rgba(237, 237, 237, 1); /* ADJUST: Change to white (#ffffff) or other color */
+  padding-top: 17rem; /* ADJUST: Top padding - increase to add more top space, decrease to reduce */
+  padding-right: 2rem; /* ADJUST: Right padding - increase for more right space, decrease for less */
+  padding-bottom: 6rem; /* ADJUST: Bottom padding - decrease this value to reduce bottom space (4rem = less, 2rem = minimal) */
+  padding-left: 2rem; /* ADJUST: Left padding - increase for more left space, decrease for less */
+}
+
+/* How It Works Container - Centers content with max width
+   - ADJUST: max-width to make content area wider/narrower (1400px = wide, 1200px = narrower)
+*/
+.how-it-works-container {
+  max-width: 2000px; /* ADJUST: Change to 1200px for narrower, 1600px for wider */
+  margin: 0 auto; /* Centers the container */
+}
+
+/* "How it works" Main Title - Positioned at top left
+   - ADJUST: text-align to change title position (left = top left current, center = center, right = top right)
+   - ADJUST: font-size to make bigger/smaller (3.5rem = current, 4rem = bigger, 3rem = smaller)
+   - ADJUST: margin-bottom to change space below title (4rem = current, 3rem = less, 5rem = more)
+   - ADJUST: margin-top to move title up/down (0 = current, -1rem = move up, 1rem = move down)
+   - TO MOVE TITLE MORE TO TOP: Reduce margin-top (use negative values like -1rem, -2rem)
+   - TO MOVE TITLE DOWN: Increase margin-top (use positive values like 1rem, 2rem)
+   - ADJUST: color to change text color (#1a1a1a = dark gray, #000000 = black)
+*/
+.how-it-works-title {
+  font-size: 3.5rem; /* ADJUST: Make bigger (4rem) or smaller (3rem) */
+  font-weight: 660; /* ADJUST: 600 = lighter, 800 = heavier (700 = standard bold) */
+  color: #1a1a1a; /* ADJUST: Change to #000000 for black, or other color */
+  text-align: center; /* ADJUST: left = top left (current), center = center, right = top right */
+  margin-top: -16rem; /* ADJUST: Use negative values to move up (e.g., -1rem, -2rem), positive to move down */
+  margin-bottom: 2rem; /* ADJUST: Increase (5rem) for more space below, decrease (3rem) for less */
+  letter-spacing: -1px; /* ADJUST: 0 = normal spacing, -2px = tighter */
+}
+
+/* How It Works Content - Grid container for text and image
+   - ADJUST: grid-template-columns to change column widths (1fr 1fr = equal, 1.5fr 1fr = text wider)
+   - ADJUST: gap to change space between text and image (4rem = current, 3rem = less, 5rem = more)
+   - ADJUST: align-items to change vertical alignment (center = middle, flex-start = top, flex-end = bottom)
+*/
+.how-it-works-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* ADJUST: Change to 1.5fr 1fr for wider text column */
+  gap: 4rem; /* ADJUST: Increase (5rem) for more space between text and image */
+  align-items: center; /* ADJUST: center = middle, flex-start = top, flex-end = bottom */
+}
+
+/* How It Works Text Container - Left side text area
+   - ADJUST: gap to change space between title, description, and button (2rem = current)
+   - ADJUST: text-align to change text alignment (left = current, center = center, right = right)
+*/
+.how-it-works-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* ADJUST: Increase (2.5rem) for more space between elements */
+ margin-left: 4rem;
+  text-align: left; /* ADJUST: Change to center or right for different alignment */
+}
+
+/* "Easy claims, great service" Title - Left-aligned below main title
+   - ADJUST: font-size to make bigger/smaller (2.5rem = current, 3rem = bigger, 2rem = smaller)
+   - ADJUST: font-weight (700 = bold, 600 = medium, 800 = extra-bold)
+   - ADJUST: color to change text color (#1a1a1a = dark gray)
+   - ADJUST: margin-top to move title up/down (0 = current, -0.5rem = move up, 0.5rem = move down)
+   - ADJUST: margin-bottom to add space below title (0 = current, 1rem = more space)
+   - TO MOVE TITLE UP/DOWN: Change margin-top (negative = up, positive = down)
+   - TO MOVE TITLE LEFT/RIGHT: Change text-align in .how-it-works-text (left = current)
+*/
+.easy-claims-title {
+  font-size: 2.5rem; /* ADJUST: Make bigger (3rem) or smaller (2rem) */
+  font-weight: 700; /* ADJUST: 600 = lighter, 800 = heavier */
+  color: #1a1a1a; /* ADJUST: Change to #000000 for black, or other color */
+  letter-spacing: -1px; /* ADJUST: 0 = normal spacing */
+  margin-top: 0; /* ADJUST: Use negative values to move up (e.g., -0.5rem), positive to move down */
+  margin-bottom: 0; /* ADJUST: Add margin-bottom: 1rem for space below title */
+  text-align: left; /* ADJUST: left = left-aligned (current), center = centered, right = right-aligned */
+}
+
+/* Description Text - Left-aligned below "Easy claims" title, matches title color
+   - ADJUST: font-size to make bigger/smaller (1.1rem = current, 1.2rem = bigger, 1rem = smaller)
+   - ADJUST: color to match title color (#1a1a1a = dark gray, same as title)
+   - ADJUST: line-height to change line spacing (1.8 = current, 1.6 = tighter, 2.0 = looser)
+   - ADJUST: margin-top to move description up/down (0 = current, -0.5rem = move up, 0.5rem = move down)
+   - ADJUST: margin-bottom to add space below description (0 = current, 0.5rem = more space)
+   - TO MOVE DESCRIPTION UP/DOWN: Change margin-top (negative = up, positive = down)
+   - TO MOVE DESCRIPTION LEFT/RIGHT: Change text-align (left = current, center = center, right = right)
+*/
+.easy-claims-description {
+  font-size: 1.1rem; /* ADJUST: Make bigger (1.2rem) or smaller (1rem) */
+  color: #1a1a1a; /* ADJUST: Changed to match title color - same as .easy-claims-title */
+  line-height: 1.8; /* ADJUST: 1.6 = tighter spacing, 2.0 = looser spacing */
+  margin-top: 0; /* ADJUST: Use negative values to move up (e.g., -0.5rem), positive to move down */
+  margin-bottom: 0; /* ADJUST: Add margin-bottom: 0.5rem for space below description */
+  text-align: left; /* ADJUST: left = left-aligned (current), center = centered, right = right-aligned */
+}
+
+/* Start a Claim Button - Left-aligned below description
+   - ADJUST: padding to change button size (1rem 2.5rem = top/bottom left/right)
+   - ADJUST: font-size to change text size (1rem = current)
+   - ADJUST: border-radius to change corner roundness (8px = current, 4px = less round, 12px = more round)
+   - ADJUST: align-self to change button position (flex-start = left current, center = center, flex-end = right)
+   - ADJUST: margin-top to move button up/down (0 = current, -0.5rem = move up, 0.5rem = move down)
+   - ADJUST: margin-left to move button left/right (0 = current, 1rem = move right, -1rem = move left)
+   - TO MOVE BUTTON UP/DOWN: Change margin-top (negative = up, positive = down)
+   - TO MOVE BUTTON LEFT/RIGHT: Change align-self or add margin-left/margin-right
+   - TO CHANGE BUTTON SIZE: Change padding (increase for bigger, decrease for smaller)
+   - ADJUST: background, border, color to change button colors
+*/
+.start-claim-btn {
+  background: white; /* ADJUST: Change to #f5f5f5 for light gray, or other color */
+  border: 2px solid #e0e0e0; /* ADJUST: Change border color (#e0e0e0 = light gray) */
+  color: #1a1a1a; /* ADJUST: Change text color (#1a1a1a = dark gray) */
+  padding: 1rem 2.5rem; /* ADJUST: First = top/bottom, Second = left/right (increase for bigger button) */
+  font-size: 1rem; /* ADJUST: Make bigger (1.1rem) or smaller (0.9rem) */
+  font-weight: 600; /* ADJUST: 500 = lighter, 700 = heavier */
+  cursor: pointer;
+  border-radius: 8px; /* ADJUST: 4px = less round, 12px = more round, 50px = pill shape */
+  align-self: flex-start; /* ADJUST: flex-start = left-aligned (current), center = centered, flex-end = right-aligned */
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ADJUST: Change shadow or remove (none) */
+  margin-top: 0; /* ADJUST: Use negative values to move up (e.g., -0.5rem), positive to move down */
+  margin-left: 0; /* ADJUST: Use positive values to move right (e.g., 1rem), negative to move left */
+}
+
+.start-claim-btn:hover {
+  background: #f5f5f5; /* ADJUST: Change hover background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* ADJUST: Change hover shadow */
+}
+
+/* How It Works Image Container - Right side image area
+   - ADJUST: justify-content to change horizontal image position (center = middle, flex-start = left, flex-end = right)
+   - ADJUST: align-items to change vertical image position (center = middle current, flex-start = top, flex-end = bottom)
+   - ADJUST: margin-top to move image container up/down (0 = current, -2rem = move up, 2rem = move down)
+   - ADJUST: margin-bottom to add space below image (0 = current)
+   - TO MOVE IMAGE CONTAINER UP/DOWN: Change align-items or add margin-top/margin-bottom
+   - TO MOVE IMAGE CONTAINER LEFT/RIGHT: Change justify-content (flex-start = left, center = middle, flex-end = right)
+   - ADJUST: width to change container width (100% = full, 80% = narrower)
+*/
+.how-it-works-image {
+  display: flex;
+  justify-content: center; /* ADJUST: flex-start = left, flex-end = right, center = middle (current) */
+  align-items: center; /* ADJUST: flex-start = top, center = middle (current), flex-end = bottom */
+  width: 100%;
+  overflow: visible; /* Allows image to extend beyond container if needed */
+  margin-top: 0; /* ADJUST: Use negative values to move up (e.g., -2rem), positive to move down */
+  margin-bottom: 0; /* ADJUST: Use positive values to move down, negative to move up */
+}
+
+/* Hand Phone Image - Smartphone image
+   - ADJUST: width to change image size (200% = current, 150% = smaller, 250% = larger)
+   - ADJUST: max-width to limit maximum size (500px = current, 400px = smaller, 600px = larger)
+   - ADJUST: translateX to move image left/right (negative = left, positive = right)
+      Examples: translateX(-70%) = current, translateX(-60%) = less left, translateX(-80%) = more left
+   - ADJUST: translateY to move image up/down (negative = up, positive = down)
+      Example: translateY(-20%) to move up, translateY(20%) to move down
+*/
+.hand-phone-image {
+  width: 200%; /* ADJUST: Make smaller (150%) or larger (250%) */
+  max-width: 950px; /* ADJUST: Increase (600px) for larger max size, decrease (400px) for smaller */
+  height: auto;
+  object-fit: contain; /* ADJUST: cover = fills space, contain = fits within space */
+  transform: translateX(-29%);
+  margin-bottom: -2rem; /* ADJUST: Change -70% to move more left (-80%) or less left (-60%) */
+  /* Optional: Add translateY to move image up/down */
+  /* transform: translateX(-70%) translateY(-10%); */
+}
+
+/* How to Buy Section */
+.how-to-buy-section {
+  background: white;
+  padding: 6rem 4rem;
+}
+
+.how-to-buy-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how-to-buy-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+.how-to-buy-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* FAQ Section */
+.faq-section {
+  background: white;
+  padding: 6rem 4rem;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.faq-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faq-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 4rem;
+  letter-spacing: -1px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: -1px;
+}
+
+.faq-question-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.faq-question-wrapper:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.faq-question {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.faq-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #1a1a1a;
+  transition: transform 0.3s;
+}
+
+.faq-answer {
+  padding-bottom: 1.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin: 0;
+  padding-right: 2rem;
+}
+
+.faq-footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.terms-link {
+  color: #1a1a1a;
+  text-decoration: underline;
+  font-size: 1rem;
+  transition: opacity 0.3s;
+}
+
+.terms-link:hover {
+  opacity: 0.7;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Terms Page */
+.terms-page-wrapper {
+  min-height: 100vh;
+  background: white;
+}
+
+.terms-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.terms-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.terms-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.terms-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.terms-body {
+  background: white;
+}
+
+.terms-section {
+  margin-bottom: 3rem;
+}
+
+.terms-section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.terms-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.terms-numbered-item {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.terms-numbered-item strong {
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.terms-bullet-list {
+  list-style-type: disc;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.terms-bullet-list li {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive for Terms Page */
+@media (max-width: 768px) {
+  .terms-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .terms-main-title {
+    font-size: 2rem;
+  }
+  
+  .terms-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .terms-section-title {
+    font-size: 1.5rem;
+  }
+  
+  .terms-bullet-list {
+    margin-left: 1.5rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Adjusts layout for smaller screens
+   ============================================ */
+
+/* Tablet and smaller desktop screens
+   - ADJUST: max-width breakpoint (1200px) to change when these styles apply
+   - ADJUST: font sizes to scale down proportionally
+*/
+@media (max-width: 1200px) {
+  /* ADJUST: Reduce hero title size for smaller screens */
+  .hero-title {
+    font-size: 4rem; /* ADJUST: Make smaller (3.5rem) or larger (4.5rem) */
+  }
+  
+  /* ADJUST: Reduce background text size */
+  .background-text {
+    font-size: 20rem; /* ADJUST: Make smaller (15rem) or larger (25rem) */
+  }
+  
+  .protection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .cta-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  /* How It Works Section - Tablet adjustments */
+  .how-it-works-content {
+    grid-template-columns: 1fr; /* Stacks content vertically on tablet */
+    gap: 3rem; /* ADJUST: Space between text and image when stacked */
+  }
+}
+
+/* Mobile screens - Stacks content vertically
+   - ADJUST: max-width breakpoint (768px) to change when mobile styles apply
+   - ADJUST: All values below to fine-tune mobile appearance
+*/
+@media (max-width: 768px) {
+  .navbar-section {
+    padding: 1rem 2rem; /* ADJUST: Reduce padding for mobile (1rem 1rem) */
+  }
+  
+  .navbar-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  
+  .logo-nav-group {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .header-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  /* Hero Section Mobile Adjustments */
+  .hero-section {
+    padding: 2rem; /* ADJUST: Reduce padding (1.5rem) for tighter mobile layout */
+  }
+  
+  /* ADJUST: Change flex-direction to column for mobile stacking */
+  .hero-content {
+    flex-direction: column; /* Stacks text above images on mobile */
+    gap: 2rem; /* ADJUST: Space between text and images (1.5rem = less space) */
+    text-align: center; /* ADJUST: Change to left for left-aligned text */
+    min-height: auto; /* Removes minimum height constraint */
+  }
+  
+  /* ADJUST: Mobile title size */
+  .hero-title {
+    font-size: 3rem; /* ADJUST: Make smaller (2.5rem) or larger (3.5rem) */
+  }
+  
+  /* ADJUST: Mobile tagline size */
+  .hero-tagline {
+    font-size: 1.1rem; /* ADJUST: Make smaller (1rem) or larger (1.2rem) */
+  }
+  
+  /* ADJUST: Mobile background text size */
+  .background-text {
+    font-size: 12rem; /* ADJUST: Make smaller (10rem) or larger (15rem) */
+  }
+  
+  /* ADJUST: Mobile image sizing */
+  .hero-main-image {
+    max-width: 100%; /* ADJUST: Change to 90% for smaller image */
+    height: auto;
+    /* transform: translateX(0px) */
+  }
+  
+  /* ADJUST: Mobile image container height */
+  .hero-image-container {
+    min-height: 300px; /* ADJUST: Reduce (250px) or increase (350px) */
+  }
+  
+  .protection-section {
+    padding: 4rem 2rem;
+  }
+  
+  .protection-title {
+    font-size: 2.5rem;
+  }
+  
+  .protection-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-section {
+    padding: 4rem 2rem;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+  }
+  
+  .cta-image-container {
+    height: 400px;
+  }
+  
+  .protection-simple-section {
+    padding: 4rem 2rem;
+  }
+  
+  .protection-simple-title {
+    font-size: 2.5rem;
+  }
+  
+  .claims-title {
+    font-size: 2rem;
+  }
+  
+  .protection-feature {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .feature-text {
+    text-align: center;
+  }
+  
+  /* How It Works Section - Mobile adjustments */
+  .how-it-works-section {
+    padding: 4rem 2rem; /* ADJUST: Reduce padding for mobile (3rem 1.5rem = tighter) */
+  }
+  
+  /* ADJUST: Mobile title size */
+  .how-it-works-title {
+    font-size: 2.5rem; /* ADJUST: Make smaller (2rem) or larger (3rem) */
+  }
+  
+  /* ADJUST: Mobile content layout - stacks vertically */
+  .how-it-works-content {
+    grid-template-columns: 1fr; /* Stacks text above image on mobile */
+    gap: 3rem; /* ADJUST: Space between text and image when stacked (2rem = less space) */
+  }
+  
+  /* ADJUST: Mobile subtitle size */
+  .easy-claims-title {
+    font-size: 2rem; /* ADJUST: Make smaller (1.8rem) or larger (2.2rem) */
+  }
+  
+  /* ADJUST: Mobile image adjustments */
+  .hand-phone-image {
+    width: 150%; /* ADJUST: Reduce for mobile (120% = smaller, 180% = larger) */
+    transform: translateX(-50%); /* ADJUST: Adjust for mobile positioning (-40% = less left, -60% = more left) */
+  }
+  
+  .how-to-buy-section {
+    padding: 4rem 2rem;
+  }
+  
+  .how-to-buy-title {
+    font-size: 2.5rem;
+  }
+  
+  .faq-section {
+    padding: 4rem 2rem;
+  }
+  
+  .faq-title {
+    font-size: 2.5rem;
+  }
+  
+  .faq-question {
+    font-size: 1.1rem;
+  }
+  
+  .faq-answer p {
+    font-size: 0.95rem;
+  }
+}
+
