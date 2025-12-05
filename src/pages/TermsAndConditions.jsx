@@ -1,6 +1,16 @@
+import { useEffect } from 'react'
 import '../App.css'
 
 function TermsAndConditions() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    // Scroll to top immediately when page loads
+    window.scrollTo(0, 0)
+    // Also try scrollIntoView for better browser compatibility
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [])
+
   return (
     <div className="terms-page-wrapper">
       {/* Navbar Section */}
